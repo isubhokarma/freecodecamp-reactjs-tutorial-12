@@ -2,8 +2,8 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="container navbar-brand navbar-light bg-light text-info">
-      <h3>To Dos</h3>
+    <div className="container navbar-brand navbar-dark bg-dark text-light">
+      <h3>To Do List</h3>
     </div>
   );
 };
