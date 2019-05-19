@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TodoList from "./TodoList";
 import todosData from "./todosData";
 import Navbar from "./Navbar";
-import { render } from "react-dom";
 
 class App extends Component {
   constructor() {
@@ -10,11 +9,26 @@ class App extends Component {
     this.state = {
       todos: todosData
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(id) {
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      });
+      return {
+        todos: updatedTodos
+      };
+    });
   }
 
   render() {
     const todoComponents = this.state.todos.map(item => (
-      <TodoList key={item.id} item={item} />
+      <TodoList key={item.id} item={item} handleChange={this.handleChange} />
     ));
 
     return (
@@ -27,5 +41,3 @@ class App extends Component {
 }
 
 export default App;
-
-//props are hard coded so let's use state but that requires class components
